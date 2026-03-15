@@ -213,25 +213,21 @@ button:active {
 
 #dialogue-box {
     position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Exact centering */
     background: var(--ui-bg);
-    border: 3px solid var(--peppa-pink);
-    border-radius: 20px;
-    padding: 10px 30px;
+    border: 5px solid var(--peppa-pink);
+    border-radius: 25px;
+    padding: 20px 40px;
     display: flex;
     align-items: center;
     gap: 20px;
-    box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     pointer-events: auto;
-    max-width: 80%;
-    animation: slideUp 0.3s ease-out;
-}
-
-@keyframes slideUp {
-    0% { transform: translate(-50%, 100%); }
-    100% { transform: translate(-50%, 0); }
+    max-width: 85%;
+    z-index: 2000;
+    animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .setting-item {

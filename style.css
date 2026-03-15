@@ -104,13 +104,14 @@ button:active {
 /* Touch Controls */
 #touch-controls {
     position: absolute;
-    bottom: 20px;
+    bottom: 50px; /* Moved up more from the bottom */
     width: 100%;
     display: flex;
     justify-content: space-between;
-    padding: 0 20px;
+    padding: 0 40px; /* Increased side padding */
     box-sizing: border-box;
-    pointer-events: none; /* Layout container */
+    pointer-events: none; 
+    z-index: 1000; /* Ensure it stays on top */
 }
 
 .d-pad, .action-pad {

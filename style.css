@@ -1,0 +1,296 @@
+:root {
+    --peppa-pink: #FFC0CB;
+    --sky-blue: #87CEEB;
+    --grass-green: #7CFC00;
+    --mud-brown: #8B4513;
+    --ui-bg: rgba(255, 255, 255, 0.9);
+}
+
+body {
+    margin: 0;
+    overflow: hidden;
+    background-color: var(--sky-blue);
+    font-family: 'Comic Sans MS', 'Arial Rounded MT Bold', sans-serif;
+    user-select: none;
+    touch-action: none;
+}
+
+#game-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+canvas {
+    background: var(--sky-blue);
+    display: block;
+    border-bottom: 5px solid var(--grass-green); /* Visual ground line */
+}
+
+/* UI Layers */
+#ui-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Allow clicks through to game unless on buttons */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.screen {
+    background: var(--ui-bg);
+    padding: 2rem;
+    border-radius: 20px;
+    border: 5px solid var(--peppa-pink);
+    text-align: center;
+    pointer-events: auto;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 100;
+}
+
+.hidden {
+    display: none !important;
+}
+
+h1 {
+    color: #FF1493;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 1.2rem;
+    color: #333;
+}
+
+button {
+    background: var(--peppa-pink);
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.5rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: bold;
+    color: white;
+    box-shadow: 0 5px #ff69b4;
+    transition: transform 0.1s;
+}
+
+button:active {
+    transform: translateY(4px);
+    box-shadow: 0 1px #ff69b4;
+}
+
+#hud {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 1.5rem;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 10px 20px;
+    border-radius: 15px;
+    border: 3px solid var(--peppa-pink);
+    color: #333;
+    pointer-events: auto;
+}
+
+/* Touch Controls */
+#touch-controls {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    box-sizing: border-box;
+    pointer-events: none; /* Layout container */
+}
+
+.d-pad, .action-pad {
+    pointer-events: auto; /* Buttons are clickable */
+    display: flex;
+    gap: 20px;
+}
+
+.mobile-instructions {
+    background: rgba(255, 255, 255, 0.5);
+    padding: 15px;
+    border-radius: 15px;
+    margin: 15px 0;
+}
+
+.guide-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.key-icon {
+    background: white;
+    border: 2px solid var(--peppa-pink);
+    padding: 5px 10px;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    box-shadow: 0 3px #ddd;
+}
+
+.guide-row p {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+#touch-controls button {
+    width: 80px;
+    height: 80px;
+    border-radius: 20px;
+    background: var(--peppa-pink);
+    border: 4px solid white;
+    font-size: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 6px rgba(0,0,0,0.2);
+    color: white;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: none;
+}
+
+#touch-controls button:active {
+    transform: translateY(4px);
+    box-shadow: 0 2px rgba(0,0,0,0.2);
+}
+
+@keyframes popIn {
+    width: 300px;
+    height: 20px;
+    background: #eee;
+    border-radius: 10px;
+    margin: 20px auto;
+    overflow: hidden;
+    border: 2px solid var(--peppa-pink);
+}
+
+#progress-bar {
+    width: 0%;
+    height: 100%;
+    background: var(--peppa-pink);
+    transition: width 0.3s;
+}
+
+.menu-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.char-options {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.char-card {
+    border: 3px solid #ccc;
+    border-radius: 15px;
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.char-card.active {
+    border-color: var(--peppa-pink);
+    background: white;
+    transform: scale(1.1);
+}
+
+.char-preview {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 10px;
+    border-radius: 50%;
+}
+
+.char-preview.peppa { background: #FFC0CB; }
+.char-preview.george { background: #87CEEB; }
+
+#dialogue-box {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--ui-bg);
+    border: 3px solid var(--peppa-pink);
+    border-radius: 20px;
+    padding: 10px 30px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
+    pointer-events: auto;
+    max-width: 80%;
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+    0% { transform: translate(-50%, 100%); }
+    100% { transform: translate(-50%, 0); }
+}
+
+.setting-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 15px 0;
+}
+
+#auth-screen input {
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    border-radius: 25px;
+    border: 3px solid var(--peppa-pink);
+    margin: 10px 0;
+    width: 80%;
+    text-align: center;
+}
+
+.fact-box {
+    background: #FFFACD;
+    border: 3px dashed #FFA500;
+    padding: 15px;
+    border-radius: 15px;
+    margin: 20px 0;
+}
+
+.fact-box h3 {
+    margin: 0 0 5px;
+    color: #FF8C00;
+}
+
+#learning-fact {
+    font-style: italic;
+    color: #555;
+    margin: 0;
+}
+
+@keyframes popIn {
+    0% { transform: scale(0.5); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@media (min-width: 1024px) {
+    /* Hide touch controls on desktop unless specifically enabled */
+    #touch-controls {
+        display: none; 
+    }
+}

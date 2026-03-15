@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Peppa's Garden Adventure</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <canvas id="gameCanvas"></canvas>
+        
+        <!-- UI Layer -->
+        <div id="ui-layer">
+            <div id="loading-screen" class="screen">
+                <h1>Loading...</h1>
+                <div class="progress-container">
+                    <div id="progress-bar"></div>
+                </div>
+            </div>
+
+            <div id="auth-screen" class="screen hidden">
+                <h1>Welcome!</h1>
+                <p>What is your name?</p>
+                <input type="text" id="auth-name" placeholder="Enter your name">
+                <div class="menu-buttons">
+                    <button id="auth-submit-btn">Let's Play!</button>
+                </div>
+            </div>
+
+            <div id="start-screen" class="screen hidden">
+                <h1>Peppa's Learning Adventure</h1>
+                <p>Hello <span id="player-name-display">Friend</span>!</p>
+                
+                <div class="mobile-instructions">
+                    <div class="guide-row">
+                        <span class="key-icon">⬅️</span>
+                        <span class="key-icon">➡️</span>
+                        <p>Move Peppa</p>
+                    </div>
+                    <div class="guide-row">
+                        <span class="key-icon">⬆️</span>
+                        <p>Jump High!</p>
+                    </div>
+                </div>
+
+                <div class="menu-buttons">
+                    <button id="play-btn">Start Game</button>
+                    <button id="character-btn">Pick Character</button>
+                    <button id="settings-btn">⚙️ Settings</button>
+                    <button id="logout-btn" style="background: #999; box-shadow: 0 5px #666;">Logout</button>
+                </div>
+            </div>
+
+            <div id="character-screen" class="screen hidden">
+                <h2>Who's Playing?</h2>
+                <div class="char-options">
+                    <div class="char-card active" data-char="peppa">
+                        <div class="char-preview peppa"></div>
+                        <span>Peppa Pig</span>
+                    </div>
+                    <div class="char-card" data-char="george">
+                        <div class="char-preview george"></div>
+                        <span>George Pig</span>
+                    </div>
+                </div>
+                <button id="confirm-char-btn">Ready!</button>
+            </div>
+
+            <div id="settings-screen" class="screen hidden">
+                <h2>Settings</h2>
+                <div class="setting-item">
+                    <label>Music Volume</label>
+                    <input type="range" id="music-vol" min="0" max="1" step="0.1" value="0.4">
+                </div>
+                <div class="setting-item">
+                    <label>Particles</label>
+                    <input type="checkbox" id="particles-toggle" checked>
+                </div>
+                <div class="menu-buttons">
+                    <button id="close-settings-btn">Back</button>
+                    <button id="settings-logout-btn" style="background: #999; box-shadow: 0 5px #666;">Logout</button>
+                </div>
+            </div>
+            
+            <div id="dialogue-box" class="hidden">
+                <div class="avatar"></div>
+                <p id="dialogue-text">Hello! Let's find some Teddies!</p>
+            </div>
+            
+            <div id="win-screen" class="screen hidden">
+                <h1>Congratulations!</h1>
+                <p>You finished all the levels! You are amazing!</p>
+                <button id="restart-btn">Play Again</button>
+            </div>
+
+            <div id="level-complete-screen" class="screen hidden">
+                <h1>Well Done!</h1>
+                <div id="fact-box" class="fact-box">
+                    <h3>Did you know?</h3>
+                    <p id="learning-fact">Fact goes here!</p>
+                </div>
+                <button id="next-btn">Next Level ➡️</button>
+            </div>
+
+            <div id="hud" class="hidden">
+                <div class="score-box">
+                    <span id="level-name">Level 1</span>: 
+                    <span id="score">0</span>/<span id="total-teddies">3</span> 🧸
+                </div>
+            </div>
+        </div>
+
+        <!-- Touch Controls (Mobile) -->
+        <div id="touch-controls" class="hidden">
+            <div class="d-pad">
+                <button id="btn-left">⬅️</button>
+                <button id="btn-right">➡️</button>
+            </div>
+            <div class="action-pad">
+                <button id="btn-jump">⬆️ Jump</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.onerror = function(msg, url, lineNo, columnNo, error) {
+            var message = [
+                'Message: ' + msg,
+                'URL: ' + url,
+                'Line: ' + lineNo,
+                'Column: ' + columnNo,
+                'Error object: ' + JSON.stringify(error)
+            ].join(' - ');
+            console.error(message);
+            alert("Error: " + msg + "\nPlease check the browser console for details.");
+            return false;
+        };
+    </script>
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
